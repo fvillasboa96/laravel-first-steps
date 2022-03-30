@@ -19,6 +19,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    /**Se agrega el atributo namespace para que laravel resuelva
+     * la ruta de controladores**/
+    protected $namespace = 'App\\Http\\Controllers';
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -29,13 +33,24 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::prefix('api')
+            $this->mapApiRoutes();
+            $this->mapWebRoutes();            
+        });
+    }
+
+    public function mapApiRoutes()
+    {
+       Route::prefix('api')
+                ->namespace($this->namespace)
                 ->middleware('api')
                 ->group(base_path('routes/api.php'));
+    }
 
-            Route::middleware('web')
+    public function mapWebRoutes()
+    {
+       Route::middleware('web')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
-        });
     }
 
     /**
