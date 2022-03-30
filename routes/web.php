@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('products', 'ProductController@index')->name('products.index');
 
 Route::get('products/create', 'ProductController@create')->name('products.create');
@@ -36,3 +37,8 @@ Route::match(['put', 'patch'], 'products/{product}', function ($product) {
 Route::delete('products/{product}', function ($product) {
     //return 'Mostrando formulario para editar producto con id {$product}';
 })->name('products.destroy');
+=======
+Route::get('products', function () {
+    return 'Hola Mundo';
+})->name('products.index');
+>>>>>>> 5a0199c30053b7f28ea1fc8852cdd18318ab2a07
