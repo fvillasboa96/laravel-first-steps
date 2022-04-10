@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-</head>
-<body>
-<h1>Lista de Productos</h1>
+@extends('layouts.master')
 
-<p>SHOW Producto</p>
+@section('content')
 
+	<h1>Lista de Productos</h1>
 
-</body>
-</html>
+	<h2>{{$product -> id}}</h2>
+	<h2>{{$product -> title}}</h2>
+	<h2>{{$product -> description}}</h2>
+	<h2>{{$product -> price}}</h2>
+	<h2>{{$product -> stock}}</h2>
+	<h2>{{$product -> status}}</h2>
+
+@endsection
