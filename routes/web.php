@@ -13,27 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Main@index');
 
+//Se pueden utilizar metodos except u only como en los middleware
+Route::resource('products', 'ProductController');
+
+/*
 Route::get('products', 'ProductController@index')->name('products.index');
 
 Route::get('products/create', 'ProductController@create')->name('products.create');
 
 Route::post('products', 'ProductController@store')->name('products.store');
 
-Route::get('products/{product}', 'ProductController@show')->name('products.show');
+Route::get('products/{product:title}', 'ProductController@show')->name('products.show');
 
-Route::get('products/{product}/edit', function ($product) {
-    return 'Mostrando formulario para editar producto con id {$product}';
-})->name('products.edit');
+Route::get('products/{product}/edit', 'ProductController@edit')->name('products.edit');
 
-Route::match(['put', 'patch'], 'products/{product}', function ($product) {
-    //return 'Lista de Productos';
-})->name('products.update');
+Route::match(['put', 'patch'], 'products/{product}', 'ProductController@update')->name('products.update');
 
-Route::delete('products/{product}', function ($product) {
-    //return 'Mostrando formulario para editar producto con id {$product}';
-})->name('products.destroy');
+Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy');*/
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

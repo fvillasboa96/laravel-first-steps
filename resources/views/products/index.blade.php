@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 
@@ -9,6 +9,7 @@
 			El elemento esta vacio
 		</div>
 	@else
+		<a class="btn btn-success" href="{{ route('products.create') }}">Crear</a>
 		<div class="table-responsive">
 			<table class="table table-bordered">
 			<thead class="thead-light">
@@ -19,6 +20,7 @@
 					<th>Precio</th>
 					<th>Stock</th>
 					<th>Status</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,6 +32,20 @@
 						<td>{{$product -> price}}</td>
 						<td>{{$product -> stock}}</td>
 						<td>{{$product -> stock}}</td>
+						<td>
+							
+							<a href="{{ route('products.show', ['product' => $product->id]) }}">Show</a>
+							
+							<a href="{{ route('products.edit', ['product' => $product->id]) }}">Edit</a>
+
+							<form method="POST" action="{{ route('products.destroy', ['product'=> $product->id]) }}">
+								
+								@csrf
+								@method('DELETE')
+								<button type="submit" class="btn btn-link" onclick="alert('Hola');">Delete</button>
+							</form>
+
+						</td>
 					</tr>		
 				@endforeach	
 			</tbody>
