@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->default('pendiente');
-            $table->bigInteger('customer_id')->unsigned();
-            //customer_id despues
             $table->timestamps();
-
-            $table->foreign('customer_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('cart_product');
     }
 };
