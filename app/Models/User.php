@@ -3,12 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Order;
 
 class User extends Authenticatable
 {
@@ -23,7 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'admin_since',
     ];
 
     /**
@@ -44,13 +41,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected $dates = [
-        'admin_since',
-    ];
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class, 'customer_id');
-    }
 }
