@@ -16,3 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Retornar listado o index
+Route::get('productos', function () {
+    return 'Pagina de Inicio';
+})->name('productos.index');
+
+//Ingresar un producto
+Route::post('productos', function () {
+    //return 'Pagina de Inicio';
+})->name('productos.index');
+
+//Accion para editar
+Route::match(['put', 'patch'], 'productos/{producto}', function ($producto) {
+    return 'Pagina de Inicio';
+})->name('productos.edit');
+
+//Mostrar
+Route::post('productos/{producto}', function ($producto) {
+    //return 'Pagina de Inicio';
+})->name('productos.show');
