@@ -18,21 +18,20 @@ Route::get('/', function () {
 });
 
 //Retornar listado o index
-Route::get('productos', function () {
-    return 'Pagina de Inicio';
-})->name('productos.index');
+Route::get('productos', 'ProductoController@index')->name('productos.index');
+
+Route::get('productos/create', 'ProductoController@create')->name('productos.create');
 
 //Ingresar un producto
-Route::post('productos', function () {
-    //return 'Pagina de Inicio';
-})->name('productos.index');
-
-//Accion para editar
-Route::match(['put', 'patch'], 'productos/{producto}', function ($producto) {
-    return 'Pagina de Inicio';
-})->name('productos.edit');
+Route::post('productos', 'ProductoController@store')->name('productos.store');
 
 //Mostrar
-Route::post('productos/{producto}', function ($producto) {
-    //return 'Pagina de Inicio';
-})->name('productos.show');
+Route::get('productos/{producto}', 'ProductoController@show')->name('productos.show');
+
+Route::get('productos/{producto}/edit', 'ProductoController@edit')->name('productos.edit');
+
+//Accion para editar
+Route::match(['put', 'patch'], 'productos/{producto}', 'ProductoController@update')->name('productos.update');
+
+Route::delete('productos/{producto}', 'ProductoController@destroy')->name('productos.edit');
+
