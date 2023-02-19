@@ -16,6 +16,8 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
+     * Atributos que se pueden asignar en forma masiva
+     * Son los atributos de la tabla
      */
     protected $fillable = [
         'name',
@@ -27,6 +29,7 @@ class User extends Authenticatable
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
+     * Son los que ocultan la informacion cuado se retorna coom un array u otra estructura
      */
     protected $hidden = [
         'password',
@@ -37,6 +40,7 @@ class User extends Authenticatable
      * The attributes that should be cast.
      *
      * @var array<string, string>
+     * Un atributo en que debe ser convertido al enviar
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
