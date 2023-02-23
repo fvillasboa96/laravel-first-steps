@@ -21,7 +21,11 @@ class ProductoController extends Controller
     }
 
     public function store(){
+        return 'Metodo para guardar producto';
+    }
 
+    public function create(){
+        return 'Despliega formulario para cargar producto';
     }
 
     public function show($product){
@@ -35,14 +39,14 @@ class ProductoController extends Controller
     }
 
     public function edit($producto){
-        return "Producto Editado"; 
+        return "Metodo para guardar mostrar formulario de edicion"; 
     }
 
     public function update(){
-
+        return "Metodo para actualizar un producto"; 
     }
 
     public function destroy(){
-
+        return 'Método para eliminar un producto';
     }
 }
