@@ -15,9 +15,11 @@ class ProductoController extends Controller
         //Obteneer datos por medio del modelo
         $productos = Productos::all();
 
-        dd($productos);
+        //dd($productos);
         //return $productos; //Puede recuperar en formato json plano el resultado
-        return view('productos.index');
+        return view('productos.index')->with([
+            'productos' => $productos,
+        ]);
     }
 
     public function store(){
@@ -35,7 +37,9 @@ class ProductoController extends Controller
         //findOrFail Lanza una excepcion si no encuentra el producto
         $producto = Productos::findOrFail($product);
         //dd($producto);
-        return $producto;
+        return view('productos.show')->with([
+            'producto' => $producto,
+        ]);
     }
 
     public function edit($producto){

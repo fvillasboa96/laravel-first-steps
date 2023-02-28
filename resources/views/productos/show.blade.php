@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Encabezado</h1>
-@if(empty($productos))
+@if(empty($producto))
 <div>
 	VACIO
 </div>
@@ -23,7 +23,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ($productos as $producto)
 				<tr>
 					<td>{{ $producto->id }}</td>
 					<td>{{ $producto->title }}</td>
@@ -32,7 +31,6 @@
 					<td>{{ $producto->stock }}</td>
 					<td>{{ $producto->status }}</td>
 				</tr>
-			@endforeach
 		</tbody>
 	</table>
 @endif
