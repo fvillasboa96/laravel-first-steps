@@ -23,11 +23,12 @@ class ProductoController extends Controller
     }
 
     public function store(){
-        return 'Metodo para guardar producto';
+        dd('Estamos en store');
+        //return 'Metodo para guardar producto';
     }
 
     public function create(){
-        return 'Despliega formulario para cargar producto';
+        return view('productos.create');
     }
 
     public function show($product){
