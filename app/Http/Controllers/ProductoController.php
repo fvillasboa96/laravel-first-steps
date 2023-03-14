@@ -23,8 +23,18 @@ class ProductoController extends Controller
     }
 
     public function store(){
-        dd('Estamos en store');
-        //return 'Metodo para guardar producto';
+        //dd('Estamos en store');
+        /*Producto::create([
+            'title' => request()->title,
+            'description' => request()->description,
+            'price' => request()->price,
+            'stock' => request()->stock,
+            'status' => request()->status,
+        ]);*/
+
+        $producto = Producto::create(request()->all());
+
+        return $producto;
     }
 
     public function create(){
@@ -44,11 +54,15 @@ class ProductoController extends Controller
     }
 
     public function edit($producto){
-        return "Metodo para guardar mostrar formulario de edicion"; 
+        return view('productos.edit')->with([
+            'producto' => Producto::findOrFail($producto),
+        ]); 
     }
 
     public function update(){
-        return "Metodo para actualizar un producto"; 
+        $producto = Product::findOrFail($producto);
+        $producto->update(request()->all());
+        return $producto; 
     }
 
     public function destroy(){

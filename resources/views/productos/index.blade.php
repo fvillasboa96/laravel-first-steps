@@ -2,6 +2,7 @@
 @section('content')
 
 	<h1>Encabezado</h1>
+	<a class="btn btn-primary" href="{{ route('productos.create') }}">Crear</a>
 	@empty($productos)
 	<div>
 		<p>Vino Vacio</p>
@@ -15,6 +16,7 @@
 					<td>price</td>
 					<td>stock</td>
 					<td>status</td>
+					<td>Acciones</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +28,10 @@
 						<td>{{ $producto->price }}</td>
 						<td>{{ $producto->stock }}</td>
 						<td>{{ $producto->status }}</td>
+						<td>
+							<a class="btn btn-primary" href="{{ route('productos.show', ['producto'=> $producto->id]) }}">Mostrar</a>
+							<a class="btn btn-primary" href="{{ route('productos.edit', ['producto'=> $producto->id]) }}">Editar</a>
+						</td>
 					</tr>
 				@endforeach
 			</tbody>
