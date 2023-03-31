@@ -41,12 +41,12 @@ class ProductoController extends Controller
         return view('productos.create');
     }
 
-    public function show($product){
+    public function show($producto){
         //A traves de QueryBuilder
         //$producto = DB::table('productos')->where('id', $producto)->first();
         //$producto = DB::table('productos')->find($producto);
         //findOrFail Lanza una excepcion si no encuentra el producto
-        $producto = Productos::findOrFail($product);
+        $producto = Productos::findOrFail($producto);
         //dd($producto);
         return view('productos.show')->with([
             'producto' => $producto,
@@ -55,7 +55,7 @@ class ProductoController extends Controller
 
     public function edit($producto){
         return view('productos.edit')->with([
-            'producto' => Producto::findOrFail($producto),
+            'producto' => Productos::findOrFail($producto),
         ]); 
     }
 
@@ -65,7 +65,9 @@ class ProductoController extends Controller
         return $producto; 
     }
 
-    public function destroy(){
-        return 'Método para eliminar un producto';
+    public function destroy($producto){
+        $producto = Productos::findOrFail($producto);
+        $producto->delete();
+        return $producto;
     }
 }

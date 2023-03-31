@@ -3,6 +3,7 @@
 @section('content')
 
 	<h1>Crear producto</h1>
+	<a class="btn btn-primary" href="{{ route('productos.create') }}">Crear</a>
 	<form method="POST" action="{{ route('productos.store') }}">
 		@csrf
 		<div class="form-row">
