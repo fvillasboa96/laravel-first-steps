@@ -23,6 +23,25 @@ class ProductoController extends Controller
     }
 
     public function store(){
+
+        $rules = [
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:2000'],
+            'price' => ['required', 'min:1'],
+            'stock' => ['required', 'min:0'],
+            'status' => ['required', 'in:available,unavailable'],
+        ];
+
+        request()->validate($rules);
+
+        if (request()->status == 'available' && request()->stock == 0) {
+            //session()->flash('error', 'Debe tener Stock');
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors('Debe tener Stock');//Utilizar está opción en vez de agregar una variable flash
+        }
+
         //dd('Estamos en store');
         /*Producto::create([
             'title' => request()->title,
@@ -32,9 +51,17 @@ class ProductoController extends Controller
             'status' => request()->status,
         ]);*/
 
-        $producto = Producto::create(request()->all());
+        $producto = Productos::create(request()->all());
 
-        return $producto;
+        //session()->flash('success', 'El producto con id {{$producto->id}} ha sido creado');
+
+        //return $producto;
+        return redirect()
+            ->route('productos.index') //Lo mas recomendable
+            ->withSuccess('El producto con id {{$producto->id}} ha sido creado');
+            //->with(['success'] => 'xxxxx')// Forma corta de agregar una variable success a la sesion
+        return redirect()->action('ProductoController@index');
+        return redirect()->back(); //Cuando se desea redirigir a la vista anterior
     }
 
     public function create(){
@@ -59,15 +86,26 @@ class ProductoController extends Controller
         ]); 
     }
 
-    public function update(){
-        $producto = Product::findOrFail($producto);
+    public function update($producto){
+        $rules = [
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:2000'],
+            'price' => ['required', 'min:1'],
+            'stock' => ['required', 'min:0'],
+            'status' => ['required', 'in:available,unavailable'],
+        ];
+
+        request()->validate($rules);
+        $producto = Productos::findOrFail($producto);
         $producto->update(request()->all());
-        return $producto; 
+        return redirect()->route('productos.index')
+            ->withSuccess('El producto con id {{$producto->id}} ha sido editado');; //Lo mas recomendable
     }
 
     public function destroy($producto){
         $producto = Productos::findOrFail($producto);
         $producto->delete();
-        return $producto;
+        return redirect()->route('productos.index')
+            ->withSuccess("El producto con id {$producto->id} ha sido eliminado");; //Lo mas recomendable
     }
 }
