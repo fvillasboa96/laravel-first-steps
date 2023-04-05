@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Productos;
+use App\Http\Requests\ProductoRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,25 +34,17 @@ class ProductoController extends Controller
         ]);
     }
 
-    public function store(){
+    public function store(ProductoRequest $request){
 
-        $rules = [
-            'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:2000'],
-            'price' => ['required', 'min:1'],
-            'stock' => ['required', 'min:0'],
-            'status' => ['required', 'in:available,unavailable'],
-        ];
+        $request->validate($rules);
 
-        request()->validate($rules);
-
-        if (request()->status == 'available' && request()->stock == 0) {
-            //session()->flash('error', 'Debe tener Stock');
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors('Debe tener Stock');//Utilizar está opción en vez de agregar una variable flash
-        }
+        // if ($request->status == 'available' && $request->stock == 0) {
+        //     //session()->flash('error', 'Debe tener Stock');
+        //     return redirect()
+        //         ->back()
+        //         ->withInput()
+        //         ->withErrors('Debe tener Stock');//Utilizar está opción en vez de agregar una variable flash
+        // }
 
         //dd('Estamos en store');
         /*Producto::create([
@@ -62,7 +55,8 @@ class ProductoController extends Controller
             'status' => request()->status,
         ]);*/
 
-        $producto = Productos::create(request()->all());
+        //$producto = Productos::create($request->all());
+        $producto = Productos::create($request->validated());
 
         //session()->flash('success', 'El producto con id {{$producto->id}} ha sido creado');
 
@@ -79,7 +73,7 @@ class ProductoController extends Controller
         return view('productos.create');
     }
 
-    public function show(Productos $producto){
+    public function show(Productos $producto){//Forma implicita
         //A traves de QueryBuilder
         //$producto = DB::table('productos')->where('id', $producto)->first();
         //$producto = DB::table('productos')->find($producto);
@@ -97,18 +91,19 @@ class ProductoController extends Controller
         ]); 
     }
 
-    public function update($producto){
-        $rules = [
-            'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:2000'],
-            'price' => ['required', 'min:1'],
-            'stock' => ['required', 'min:0'],
-            'status' => ['required', 'in:available,unavailable'],
-        ];
+    public function update(Productos $producto, ProductoRequest $request){
+        // $rules = [
+        //     'title' => ['required', 'max:255'],
+        //     'description' => ['required', 'max:2000'],
+        //     'price' => ['required', 'min:1'],
+        //     'stock' => ['required', 'min:0'],
+        //     'status' => ['required', 'in:available,unavailable'],
+        // ];
 
-        request()->validate($rules);
-        $producto = Productos::findOrFail($producto);
-        $producto->update(request()->all());
+        //request()->validate($rules);
+        //$producto = Productos::findOrFail($producto);
+        $producto->update($request->all());
+
         return redirect()->route('productos.index')
             ->withSuccess('El producto con id {{$producto->id}} ha sido editado');; //Lo mas recomendable
     }
