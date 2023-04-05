@@ -17,25 +17,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Retornar listado o index
-Route::get('productos', 'ProductoController@index')->name('productos.index');
+Route::resource('productos', 'ProductoController');
 
-//Mostrar formulario para crear un producto
-Route::get('productos/create', 'ProductoController@create')->name('productos.create');
+// //Retornar listado o index
+// Route::get('productos', 'ProductoController@index')->name('productos.index');
 
-//Método que permite ingresar un producto
-Route::post('productos', 'ProductoController@store')->name('productos.store');
+// //Mostrar formulario para crear un producto
+// Route::get('productos/create', 'ProductoController@create')->name('productos.create');
 
-//Mostrar formulario para editar producto
-Route::get('productos/{producto}/edit', 'ProductoController@edit')->name('productos.edit');
-//Mostrar un producto
-Route::get('productos/{producto}', 'ProductoController@show')->name('productos.show');
+// //Método que permite ingresar un producto
+// Route::post('productos', 'ProductoController@store')->name('productos.store');
 
-//Actualiza un producto
-Route::match(['put', 'patch'], 'productos/{producto}', 'ProductoController@update')->name('productos.update');
+// //Mostrar formulario para editar producto
+// Route::get('productos/{producto}/edit', 'ProductoController@edit')->name('productos.edit');
+// //Mostrar un producto
+// Route::get('productos/{producto:title}', 'ProductoController@show')->name('productos.show');
 
-//Elimina un producto
-Route::delete('productos/{producto}', 'ProductoController@destroy')->name('productos.destroy');
+// //Actualiza un producto
+// Route::match(['put', 'patch'], 'productos/{producto}', 'ProductoController@update')->name('productos.update');
+
+// //Elimina un producto
+// Route::delete('productos/{producto}', 'ProductoController@destroy')->name('productos.destroy');
 
 
 Auth::routes();

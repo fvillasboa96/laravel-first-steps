@@ -79,12 +79,12 @@ class ProductoController extends Controller
         return view('productos.create');
     }
 
-    public function show($producto){
+    public function show(Productos $producto){
         //A traves de QueryBuilder
         //$producto = DB::table('productos')->where('id', $producto)->first();
         //$producto = DB::table('productos')->find($producto);
         //findOrFail Lanza una excepcion si no encuentra el producto
-        $producto = Productos::findOrFail($producto);
+        //$producto = Productos::findOrFail($producto);
         //dd($producto);
         return view('productos.show')->with([
             'producto' => $producto,
