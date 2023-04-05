@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only('index');//Se utiliza only para proteger solo el index
+    }
+
     public function index(){
         //Obtener datos por medio del Query Builder
         $productos = DB::table('productos')->get();

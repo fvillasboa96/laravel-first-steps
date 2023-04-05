@@ -32,7 +32,7 @@
 		</div>
 
 		<div class="form-row">
-			<button type="submit" class="btn btn-primary btn-lg">Crear Producto</button>
+			<button type="submit" class="btn btn-primary btn-lg mt-3">Crear Producto</button>
 		</div>
 	</form>
 @endsection

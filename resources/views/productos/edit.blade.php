@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="form-row">
-			<button type="submit" class="btn btn-primary btn-lg">Editar Producto</button>
+			<button type="submit" class="btn btn-primary btn-lg mt-3">Editar Producto</button>
 		</div>
 	</form>
 @endsection
