@@ -22,12 +22,7 @@
 			</thead>
 			<tbody>
 					<tr>
-						<td>{{ $producto->id }}</td>
-						<td>{{ $producto->title }}</td>
-						<td>{{ $producto->description }}</td>
-						<td>{{ $producto->price }}</td>
-						<td>{{ $producto->stock }}</td>
-						<td>{{ $producto->status }}</td>
+						@include('components.products-card')
 					</tr>
 			</tbody>
 		</table>

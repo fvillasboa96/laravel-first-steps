@@ -10,7 +10,7 @@ class Main extends Controller
     public function index(){
 
         return view('welcome')->with([
-            'products' => Product::all(),
+            'productos' => Product::all(),
         ]);
     }
 }
