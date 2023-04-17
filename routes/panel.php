@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Main@index');
+//Route::get('/', 'Main@index');
+Route::get('/', 'PanelController@index');
+Route::resource('productos', 'ProductoController');
 
-//Route::resource('productos', 'ProductoController');
+//Route::resource('productos.carts', 'ProductCartController')->only(['store', 'destroy']);
 
-Route::resource('productos.carts', 'ProductCartController')->only(['store', 'destroy']);
-
-Route::resource('carts', 'CartController')->only(['index']);
+//Route::resource('carts', 'CartController')->only(['index']);
 
 // //Retornar listado o index
 // Route::get('productos', 'ProductoController@index')->name('productos.index');
@@ -42,6 +42,6 @@ Route::resource('carts', 'CartController')->only(['index']);
 // Route::delete('productos/{producto}', 'ProductoController@destroy')->name('productos.destroy');
 
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

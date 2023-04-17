@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
 use App\Models\Productos;
 use App\Http\Requests\ProductoRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ProductoController extends Controller
 {
@@ -15,10 +16,10 @@ class ProductoController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth')->only('index');//Se utiliza only para proteger solo el index
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->only('index');//Se utiliza only para proteger solo el index
+    // }
 
     public function index(){
         //Obtener datos por medio del Query Builder

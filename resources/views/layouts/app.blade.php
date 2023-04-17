@@ -33,7 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('productos.index') }}">
+                                Productos
+                            </a>   
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-item" href="{{ route('carts.index') }}">
+                                Carrito
+                            </a>   
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
